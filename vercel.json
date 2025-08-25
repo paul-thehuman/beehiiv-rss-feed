@@ -1,0 +1,32 @@
+{
+  "functions": {
+    "api/rss.js": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/feed",
+      "destination": "/api/rss"
+    },
+    {
+      "source": "/rss.xml",
+      "destination": "/api/rss"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/rss",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=3600, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ]
+}
